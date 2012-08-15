@@ -34,7 +34,15 @@
   });
   
   v.Home = v.Page.extend({
-    template:  JST["app/templates/home.handlebar"]
+    template: JST["app/templates/home.handlebar"]
+  });
+  
+  v.Browse = v.Page.extend({
+    template: JST["app/templates/browse.handlebar"]
+  });
+  
+  v.View = v.Page.extend({
+    template: JST["app/templates/view.handlebar"]
   });
   
 })(THI.Views, THI.API);

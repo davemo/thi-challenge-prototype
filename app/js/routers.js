@@ -6,10 +6,18 @@
     },
     container: $("#page"),
     routes: {
-      "*path" : "home"
+      "browse" : "browse",
+      "view"   : "view",
+      "*path"  : "home"
     },
     home: function() {
       this._renderPage(new v.Home());
+    },
+    browse: function() {
+      this._renderPage(new v.Browse());
+    },
+    view: function() {
+      this._renderPage(new v.View());
     },
     _renderPage: function(view) {
       this.container.empty().append(view.render().el);
