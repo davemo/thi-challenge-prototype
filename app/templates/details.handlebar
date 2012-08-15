@@ -5,16 +5,16 @@
 			<img src="/img/turkey.jpg" alt="Turkey">
 		</div>
 		<div class="span8">
-			<h2>Battle the Bird</h2>
+			<h2><a href="#view">Battle the Bird</a></h2>
 			<em>Ends 12/31/11</em>		
 		</div>
 	</div>
 	
 	<div class="row">
 		<div class="btn-group">
-		  <button class="btn">Leaders</button>
-		  <button class="btn">Activity</button>
-		  <button class="btn active">Details</button>
+		  <a class="btn" href="#top-teams">Leaders</a>
+		  <a class="btn" href="#activity">Activity</a>
+		  <a class="btn active" href="#details">Details</a>
 		</div>
 	</div>
 	

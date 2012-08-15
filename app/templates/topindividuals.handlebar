@@ -12,9 +12,9 @@
 	
 	<div class="row">
 		<div class="btn-group">
-		  <button class="btn active">Leaders</button>
-		  <button class="btn">Activity</button>
-		  <button class="btn">Details</button>
+		  <a class="btn active" href="#top-teams">Leaders</a>
+		  <a class="btn" href="#activity">Activity</a>
+		  <a class="btn" href="#details">Details</a>
 		</div>
 	</div>
 	

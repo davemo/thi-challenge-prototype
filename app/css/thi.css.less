@@ -6,6 +6,28 @@ body, html {
   min-height: 100%;
 }
 
+.btn-group .btn {
+  width: 31%;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: block;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+  
+  .btn-group .btn {
+    width: 30.33%;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding-top: 0;
@@ -15,23 +37,10 @@ body, html {
     width: 100px;
     height: 100px;
   }
-
-}
-
-@media (max-width: 979px) {
-  body {
-    padding-top: 0;
+  
+  .btn-group .btn {
+    width: 25%;
   }
+
 }
 
-.row {
-  margin-bottom: 10px;
-}
-
-.btn-group .btn {
-  width: 33.3%;
-}
-
-.btn {
-  display: block;
-}
