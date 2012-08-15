@@ -6,9 +6,14 @@
     },
     container: $("#page"),
     routes: {
-      "browse" : "browse",
-      "view"   : "view",
-      "*path"  : "home"
+      "browse"           : "browse",
+      "view"             : "view",
+      "top-teams"        : "topTeams",
+      "top-individuals"  : "topIndividuals",
+      "roster"           : "roster",
+      "activity"         : "activity",
+      "details"          : "details",
+      "*path"            : "home"
     },
     home: function() {
       this._renderPage(new v.Home());
@@ -18,6 +23,21 @@
     },
     view: function() {
       this._renderPage(new v.View());
+    },
+    topTeams: function() {
+      this._renderPage(new v.TopTeams());
+    },
+    topIndividuals: function() {
+      this._renderPage(new v.TopIndividuals());
+    },
+    roster: function() {
+      this._renderPage(new v.Roster());
+    },
+    activity: function() {
+      this._renderPage(new v.ActivityList());
+    },
+    details: function() {
+      this._renderPage(new v.Details());
     },
     _renderPage: function(view) {
       this.container.empty().append(view.render().el);

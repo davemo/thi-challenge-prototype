@@ -45,4 +45,24 @@
     template: JST["app/templates/view.handlebar"]
   });
   
+  v.TopTeams = v.Page.extend({
+    template: JST["app/templates/topteams.handlebar"]
+  });
+  
+  v.TopIndividuals = v.Page.extend({
+    template: JST["app/templates/topindividuals.handlebar"]
+  });
+  
+  v.Roster = v.Page.extend({
+    template: JST["app/templates/roster.handlebar"]
+  });
+  
+  v.ActivityList = v.Page.extend({
+    template: JST["app/templates/activity.handlebar"]
+  });
+  
+  v.Details = v.Page.extend({
+    template: JST["app/templates/details.handlebar"]
+  });
+  
 })(THI.Views, THI.API);

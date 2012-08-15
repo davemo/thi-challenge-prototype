@@ -18,7 +18,7 @@
 	        <a class="brand" href="#">THI Challenge Mobile</a>
 	        <div class="nav-collapse">
 	          <ul class="nav">
-	            <li class="active"><a href="#">Home</a></li>
+	            <li class="active"><a href="#home">Home</a></li>
 	            <li><a href="#">My Challenges</a></li>
 		        <li><a href="#">Browse Challenges</a></li>
 	          </ul>
