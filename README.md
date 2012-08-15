@@ -1,6 +1,6 @@
 ## Running the "App" with Lineman (and Grunt)
 
-The app was built and configured using [Lineman](https://github.com/testdouble/lineman).
+The prototype was built and configured using [Lineman](https://github.com/testdouble/lineman).
 
 AJAX endpoint mocks exist as a simple express.js app running in node.js
 
