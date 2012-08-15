@@ -1,8 +1,22 @@
 <div id="home">
-  <div class="well">
-    <h2>Challenge Sauce</h2>
-    <div class="well">
-		Things?
-    </div>
-  </div>
+	
+	<h2>Featured Challenges</h2>
+	
+	<div class="subnav">
+		<ul class="nav nav-tabs nav-stacked">
+	  	<li><a href="#">Battle Birds</a></li>
+		</ul>
+	</div>
+	
+	<h2>My Challenges</h2>
+	
+	<div class="subnav">
+		<ul class="nav nav-tabs nav-stacked">
+		  <li><a href="#">Journal for Health</a></li>
+		  <li><a href="#">Team Challenge 1</a></li>	
+		</ul>
+	</div>
+	
+	<a href="#" class="btn btn-primary btn-large">Browse Challenges</a>
+		
 </div>
