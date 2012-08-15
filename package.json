@@ -1,0 +1,21 @@
+{
+  "name": "thi-challenge-mobile",
+  "title": "An HTML/JS/CSS app",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "David Mosher",
+    "company": "Beagle Productions"
+  },
+  "dependencies": {
+    "express" : "3.0.0beta7",
+    "request": "~2.9.203",
+    "handlebars" : "~1.0.5"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.10",
+    "grunt-contrib": "~0.1.1",
+    "lineman": "0.1.0",
+    "testacular" : "0.0.15"
+  }
+}
