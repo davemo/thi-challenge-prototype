@@ -1,13 +1,5 @@
-body {
-  padding-top: 60px;
-}
-
 body, html {
   min-height: 100%;
-}
-
-.btn-group .btn {
-  width: 31%;
 }
 
 .row {
@@ -18,29 +10,21 @@ body, html {
   display: block;
 }
 
-@media (max-width: 979px) {
+@media only screen and (min-width: 974px) {
   body {
-    padding-top: 0;
-  }
-  
-  .btn-group .btn {
-    width: 30.33%;
+    padding-top: 60px;
   }
 }
 
-@media (max-width: 768px) {
-  body {
-    padding-top: 0;
-  }
-  
+@media
+only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
   img {
     width: 100px;
     height: 100px;
   }
   
-  .btn-group .btn {
-    width: 25%;
+  .btn-toolbar .btn-group {
+    display: block;
   }
-
 }
-
