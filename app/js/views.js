@@ -12,7 +12,7 @@
   
   v.Alert = Backbone.View.extend({ // mirrors bootstrap types: alert-error, alert-success, alert-info
     el: "#alerts",
-    template: JST["app/templates/alert.handlebar"],
+    template: JST["app/templates/alert.hb"],
     REMOVE_AFTER: 6500,
     initialize: function(options) {
       _.bindAll(this);
@@ -34,35 +34,39 @@
   });
   
   v.Home = v.Page.extend({
-    template: JST["app/templates/home.handlebar"]
+    template: JST["app/templates/home.hb"]
   });
   
   v.Browse = v.Page.extend({
-    template: JST["app/templates/browse.handlebar"]
+    template: JST["app/templates/browse.hb"]
   });
   
   v.View = v.Page.extend({
-    template: JST["app/templates/view.handlebar"]
+    template: JST["app/templates/view.hb"]
   });
   
   v.TopTeams = v.Page.extend({
-    template: JST["app/templates/topteams.handlebar"]
+    template: JST["app/templates/topteams.hb"]
   });
   
   v.TopIndividuals = v.Page.extend({
-    template: JST["app/templates/topindividuals.handlebar"]
+    template: JST["app/templates/topindividuals.hb"]
   });
   
   v.Roster = v.Page.extend({
-    template: JST["app/templates/roster.handlebar"]
+    template: JST["app/templates/roster.hb"]
   });
   
   v.ActivityList = v.Page.extend({
-    template: JST["app/templates/activity.handlebar"]
+    template: JST["app/templates/activity.hb"]
   });
   
   v.Details = v.Page.extend({
-    template: JST["app/templates/details.handlebar"]
+    template: JST["app/templates/details.hb"]
+  });
+  
+  v.CreateChallenge = v.Page.extend({
+    template: JST["app/templates/create.challenge.hb"]
   });
   
 })(THI.Views, THI.API);

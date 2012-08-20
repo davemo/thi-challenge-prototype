@@ -31,6 +31,7 @@
 		</li>
 	</ul>
 
+	<a href="#challenge/create" class="btn btn-success btn-large">Create a Challenge</a>
 	<a href="#browse" class="btn btn-primary btn-large">Browse Challenges</a>
 		
 </div>

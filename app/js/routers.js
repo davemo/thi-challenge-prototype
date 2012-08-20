@@ -13,6 +13,7 @@
       "roster"           : "roster",
       "activity"         : "activity",
       "details"          : "details",
+      "challenge/create" : "createChallenge",
       "*path"            : "home"
     },
     home: function() {
@@ -38,6 +39,9 @@
     },
     details: function() {
       this._renderPage(new v.Details());
+    },
+    createChallenge: function() {
+      this._renderPage(new v.CreateChallenge());
     },
     _renderPage: function(view) {
       this.container.empty().append(view.render().el);
