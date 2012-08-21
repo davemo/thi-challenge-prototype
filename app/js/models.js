@@ -1,7 +1,15 @@
 (function(m) {
   
-  m.Activity = Backbone.Model.extend({
+  m.ChallengeActivity = Backbone.Model.extend({
     // defaults: activity, points
+  });
+  
+  m.ChallengeRule = Backbone.Model.extend({
+    // defaults: activity, limit, timePeriod (day, week, month), constraint (min or max)
+  });
+  
+  m.ChallengeBonus = Backbone.Model.extend({
+    // defaults: activity, threshold, timePeriod (day, week, month), bonus
   });
   
 })(THI.Models);
