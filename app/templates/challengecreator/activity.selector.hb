@@ -2,7 +2,7 @@
 	<span>Participants will be awarded </span>
 	<input type="text" class="span1 points"/>
 	<span>points per </span>
-	<select name="activity-selector" class="input-medium activity">
+	<select name="activity" class="input-medium activity">
 		<option value="">Activity</option>
 		<option value="step">Step</option>
 		<option value="login">Login</option>
