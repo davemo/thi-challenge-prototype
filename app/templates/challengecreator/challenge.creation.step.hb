@@ -6,7 +6,7 @@
 			  <thead>
 			    <tr>
 						{{#each headings}}
-							<th>{{ this }}</th>
+							<th>{{ . }}</th>
 						{{/each}}
 			    </tr>
 			  </thead>
