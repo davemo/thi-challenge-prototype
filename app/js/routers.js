@@ -42,7 +42,9 @@
     },
     createChallenge: function() {
       this._renderPage(new v.CreateChallenge());
-      $(".activities").replaceWith(new v.RuleTable().render().el);
+      $(".activities").replaceWith(new v.RuleTable({
+        collection: THI.Runtime.Activities
+      }).render().el);
     },
     _renderPage: function(view) {
       this.container.empty().append(view.render().el);

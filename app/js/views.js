@@ -71,13 +71,24 @@
   
   v.RuleTable = Backbone.View.extend({
     template: JST["app/templates/rule.table.hb"],
+    rowTemplate: Handlebars.compile("<tr><td>{{ activity }}</td><td>{{ points }}</td></tr>"),
+    
     initialize: function() {
       _.bindAll(this);
+      this.collection.bind("all", this.updateTable);
     },
     render: function() {
       this.setElement(this.template({ name: "activities", title: "Select Activities Dynamic" }));
       this.$('.rule-selector').append(new v.ActivitySelector().render().el);
       return this;
+    },
+    
+    updateTable: function(event, m, collection) {
+      var table = this.$('tbody');
+      table.empty();
+      collection.each(function(activity){
+        this.$('tbody').append(this.rowTemplate(activity.toJSON()));        
+      }, this);
     }
   });
   
@@ -90,6 +101,7 @@
       _.bindAll(this);
     },
     addActivity: function(e) {
+      e.preventDefault();
       var dom = $(e.currentTarget).parents(".rule-selector");
       var model = new m.Activity({
         activity: dom.find('.activities').val(),
