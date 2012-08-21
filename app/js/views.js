@@ -56,6 +56,7 @@
     template: JST["app/templates/pages/create.challenge.hb"],
     components: function() {
       var creator = $(".challenge-creator");
+      creator.append(new v.SelectDetails({ model: r.ChallengeDetail }).el);
       creator.append(new v.SelectActivities({ collection: r.ChallengeActivities }).el);
       creator.append(new v.SelectRules({ collection: r.ChallengeRules }).el);
       creator.append(new v.SelectBonuses({ collection: r.ChallengeBonuses }).el);      
@@ -72,11 +73,32 @@
     updateTable: function(e, m, collection) {
       var table = this.$("tbody").empty();
       collection.each(function(rule) {
-        this.$("tbody").append(this.rowTemplate(rule.toJSON()));
+          table.append(this.rowTemplate(rule.toJSON()));
       }, this);
     }
   });
-  
+
+    v.SelectDetails = Backbone.View.extend({
+        template: JST["app/templates/challengecreator/details.selector.hb"],
+        modelBinderMapping: {
+            // modelKey: cssSelector
+            "name" : ".name",
+            "startDate": ".start-date",
+            "endDate": ".end-date",
+            "description": ".description"
+        },
+        initialize: function(){
+            _.bindAll(this);
+            this.render();
+            this.modelBinder = new Backbone.ModelBinder();
+            this.modelBinder.bind(this.model, this.el, this.modelBinderMapping);
+
+        },
+        render: function(){
+            this.setElement(this.template());
+        }
+    });
+
   v.SelectActivities = v.ChallengeCreationStep.extend({
     itemAdder: JST["app/templates/challengecreator/activity.selector.hb"],
     rowTemplate: Handlebars.compile("<tr><td>{{ activity }}</td><td>{{ points }}</td></tr>"),

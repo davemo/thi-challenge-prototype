@@ -11,5 +11,9 @@
   m.ChallengeBonus = Backbone.Model.extend({
     // defaults: activity, threshold, timePeriod (day, week, month), bonus
   });
+
+    m.ChallengeDetail = Backbone.Model.extend({
+        // defaults: name, start, end, description
+    });
   
 })(THI.Models);
