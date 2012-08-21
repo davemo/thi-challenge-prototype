@@ -7,7 +7,7 @@
     render: function() {
       this.$el.html(this.template());
       if(this.components) {
-        _.defer(this.components);
+         _.defer(this.components);
       }
       return this;
     }
