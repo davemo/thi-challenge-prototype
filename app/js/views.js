@@ -51,6 +51,36 @@
   v.Roster = v.Page.extend({
     template: JST["app/templates/pages/roster.hb"]
   });
+
+    v.ChallengeSummary = Backbone.View.extend({
+        template: JST["app/templates/challengecreator/summary.hb"],
+        initialize: function(){
+            _.bindAll(this);
+            this.render();
+        },
+        render: function(){
+            this.setElement(this.template());
+            _.defer(function(){
+                new v.ActivitySummary({ collection: r.ChallengeActivities });
+            });
+        }
+    });
+
+    v.ActivitySummary = Backbone.View.extend({
+        el: '.activity-summary',
+        template: Handlebars.compile('Participants compete for points on: {{{ activities }}}'),
+
+        initialize: function(){
+            _.bindAll(this);
+            this.collection.bind('all', this.updateSummary);
+        },
+        updateSummary: function(event, model, collection){
+            var activities = collection.map(function(){
+                return '<span class="label label-info">' + a.attributes.activity + '</span>';
+            });
+            this.$el.html(this.template({ activities: activities.join(', ') }));
+        }
+    });
   
   v.CreateChallenge = v.Page.extend({
     template: JST["app/templates/pages/create.challenge.hb"],
@@ -60,6 +90,7 @@
       creator.append(new v.SelectActivities({ model: r.ChallengeActivity, collection: r.ChallengeActivities }).el);
       creator.append(new v.SelectRules({ model: r.ChallengeRule, collection: r.ChallengeRules }).el);
       creator.append(new v.SelectBonuses({ model: r.ChallengeBonus, collection: r.ChallengeBonuses }).el);
+      creator.append(new v.ChallengeSummary().el);
     }
   });
   
