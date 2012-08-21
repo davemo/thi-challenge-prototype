@@ -1,4 +1,4 @@
-(function(v, api) {
+(function(v, api, m) {
   
   v.Page = Backbone.View.extend({
     initialize: function() {
@@ -69,4 +69,38 @@
     template: JST["app/templates/create.challenge.hb"]
   });
   
-})(THI.Views, THI.API);
+  v.RuleTable = Backbone.View.extend({
+    template: JST["app/templates/rule.table.hb"],
+    initialize: function() {
+      _.bindAll(this);
+    },
+    render: function() {
+      this.setElement(this.template({ name: "activities", title: "Select Activities Dynamic" }));
+      this.$('.rule-selector').append(new v.ActivitySelector().render().el);
+      return this;
+    }
+  });
+  
+  v.ActivitySelector = Backbone.View.extend({
+    template: JST["app/templates/activity.selector.hb"],
+    events: {
+      "click .btn-success" : "addActivity"
+    },
+    initialize: function() {
+      _.bindAll(this);
+    },
+    addActivity: function(e) {
+      var dom = $(e.currentTarget).parents(".rule-selector");
+      var model = new m.Activity({
+        activity: dom.find('.activities').val(),
+        points: dom.find('.points').val()
+      });
+      THI.Runtime.Activities.add(model);
+    },
+    render: function() {
+      this.setElement(this.template());
+      return this;
+    }
+  });
+  
+})(THI.Views, THI.API, THI.Models);

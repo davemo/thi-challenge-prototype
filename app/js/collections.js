@@ -1,7 +1,11 @@
-(function(c) {
+(function(c, m) {
   
   c.Contacts = Backbone.Collection.extend({
     url: "/contacts"
   });
   
-})(THI.Collections);
+  c.Activities = Backbone.Collection.extend({
+    model: m.Activity
+  });
+  
+})(THI.Collections, THI.Models);

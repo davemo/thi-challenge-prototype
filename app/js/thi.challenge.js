@@ -4,8 +4,10 @@
     Views: {},
     Routers: {},
     Collections: {},
+    Models: {},
     Session: {},
-    API: {}
+    API: {},
+    Runtime: {}
   };
 
   _.extend(THI, Backbone.Events);

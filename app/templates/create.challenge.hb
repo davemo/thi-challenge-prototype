@@ -52,47 +52,7 @@
 		</form>
 	</li>
 	<li class="activities">
-		<!-- <span class="help-block">Choose from a list of activities that participants will engage in.</span> -->
-		<form class="form-horizontal">
-			<fieldset>
-				<legend>Select Activities</legend>
-				<table class="table table-striped">
-				  <thead>
-				    <tr>
-				      <th>Action</th>					
-				      <th>Points</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>Step</td>					
-				      <td>10</td>
-				    </tr>
-				    <tr>
-				      <td>Login</td>
-				      <td>200</td>
-				    </tr>
-				    <tr>
-				      <td>Pound Lost</td>
-				      <td>10</td>
-				    </tr>
-				  </tbody>
-				</table>
-			</fieldset>
-			<div class="well">
-				<span>Participants will be awarded </span>
-				<input type="text" class="span1"/>
-				<span>points per </span>
-				<select name="action-selector" class="input-medium">
-					<option value="">Action</option>
-					<option value="walking">Step</option>
-					<option value="login">Login</option>
-					<option value="weightloss">Pound Lost</option>
-				</select>
-				<a href="#" class="btn btn-success">Add Activity</a>
-				<a href="#" class="btn">Reset</a>
-			</div>
-		</form>
+
 	</li>
 	<li class="maximums">
 		<!-- <span class="help-block">Set daily, weekly, and monthly point maximums here.</span> -->
