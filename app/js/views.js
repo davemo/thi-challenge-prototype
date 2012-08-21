@@ -62,6 +62,7 @@
             this.setElement(this.template());
             _.defer(function(){
                 new v.ActivitySummary({ collection: r.ChallengeActivities });
+                new v.ScoringSummary({ collection: r.ChallengeRules });
             });
         }
     });
@@ -79,6 +80,23 @@
                 return '<span class="label label-info">' + a.attributes.activity + '</span>';
             });
             this.$el.html(this.template({ activities: activities.join(', ') }));
+        }
+    });
+
+    v.ScoringSummary = Backbone.View.extend({
+        el: '.scoring-summary',
+        template: JST['app/templates/challengecreator/scoring.summary.lineitem.hb'],
+
+        initialize: function(){
+            _.bindAll(this);
+            this.collection.bind('all', this.updateScore);
+        },
+        updateScore: function(event, model, collection){
+            var scoreHtml = '';
+            collection.each(function(data){
+                scoreHtml += this.template(data.toJSON());
+            }, this);
+            this.$el.html(scoreHtml);
         }
     });
   

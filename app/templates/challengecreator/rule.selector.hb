@@ -8,14 +8,12 @@
 	<input type="text" class="span1 points"/>
 	<span>points for </span>
 	<select name="activity-selector" class="input-small activity">
-		<option value="" selected>Action</option>
-		<option value="walking">Step</option>
+		<option value="step">Step</option>
 		<option value="login">Login</option>
-		<option value="weightloss">Pound Lost</option>
+		<option value="weightloss">Weight loss</option>
 	</select>
 	<span>in a </span>
 	<select name="timeperiod-selector" class="input-medium time-period">
-		<option value="">Time Period</option>
 		<option value="day">Day</option>
 		<option value="week">Week</option>
 		<option value="month">Month</option>

@@ -1,15 +1,37 @@
 (function(m) {
   
   m.ChallengeActivity = Backbone.Model.extend({
-    // defaults: activity, points
+      defaults: {
+          activity: 'step',
+          points: 0
+      }
   });
   
   m.ChallengeRule = Backbone.Model.extend({
-    // defaults: activity, limit, timePeriod (day, week, month), constraint (min or max)
+      defaults: {
+        constraint: 'max',
+        activity: 'step',
+        points: 0,
+        timePeriod: 'day'
+      },
+      toJSON: function(){
+        var attrs = this.attributes;
+        if(attrs.constraint == 'max'){
+            attrs.minMax = 'may gain a maximum';
+        } else {
+            attrs.minMax = 'must gain a minimum';
+        }
+        return attrs;
+      }
   });
   
   m.ChallengeBonus = Backbone.Model.extend({
-    // defaults: activity, threshold, timePeriod (day, week, month), bonus
+      defaults: {
+          activity: 'step',
+          threshold: 0,
+          timePeriod: 'day',
+          bonus: 0
+      }
   });
 
     m.ChallengeDetail = Backbone.Model.extend({

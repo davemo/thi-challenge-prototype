@@ -22,8 +22,8 @@
         <h4>Scoring</h4>
         <hr>
 
-        <blockquote class="scoring-summary">
-            <ol>
+        <blockquote>
+            <ol class="scoring-summary">
                 <li>
                     <span class="label label-info">100</span> points per <span class="label label-warning">step</span> ( up to a maximum of <span class="label label-info">600</span> points per <span class="label label-important">Day</span>, <span class="label label-info">6000</span> points per <span class="label label-important">Week</span>, or <span class="label label-info">24000</span> points per <span class="label label-important">Month</span> )
                 </li>
