@@ -24,15 +24,7 @@
 
         <blockquote>
             <ol class="scoring-summary">
-                <li>
-                    <span class="label label-info">100</span> points per <span class="label label-warning">step</span> ( up to a maximum of <span class="label label-info">600</span> points per <span class="label label-important">Day</span>, <span class="label label-info">6000</span> points per <span class="label label-important">Week</span>, or <span class="label label-info">24000</span> points per <span class="label label-important">Month</span> )
-                </li>
-                <li>
-                    <span class="label label-info">100</span> points per <span class="label label-warning">login</span> ( up to a maximum of <span class="label label-info">200</span> points per <span class="label label-important">Day</span>, or <span class="label label-info">12000</span> points per <span class="label label-important">Month</span> )
-                </li>
-                <li>
-                    <span class="label label-info">250</span> points per <span class="label label-warning">pound lost</span>
-                </li>
+							<li>No scoring rules added yet.</li>
             </ol>
         </blockquote>
 
