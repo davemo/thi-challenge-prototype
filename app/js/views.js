@@ -64,6 +64,7 @@
         new v.DetailSummary({ model: r.ChallengeDetail });
         new v.ActivitySummary({ collection: r.ChallengeActivities });
         new v.ScoringSummary({ collection: r.ChallengeRules });
+        new v.BonusSummary({ collection: r.ChallengeBonuses });
       });
     }
   });
@@ -114,6 +115,23 @@
         scoreHtml += this.template(data.toJSON());
       }, this);
       this.$el.html(scoreHtml);
+    }
+  });
+
+  v.BonusSummary = Backbone.View.extend({
+    el: '.bonus-summary',
+    template: JST['app/templates/challengecreator/bonus.summary.lineitem.hb'],
+
+    initialize: function(){
+      _.bindAll(this);
+      this.collection.bind('all', this.updateBonus);
+    },
+    updateBonus: function(event, model, collection){
+      var bonusHtml = '';
+      collection.each(function(data){
+        bonusHtml += this.template(data.toJSON());
+      }, this);
+      this.$el.html(bonusHtml);
     }
   });
 
