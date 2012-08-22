@@ -12,3 +12,6 @@
 		<a href="#" class="btn btn-reset">Reset</a>
 	</div>
 </div>
+<div>
+    <a href="#" data-open-text="Hide advanced rules" class="toggle-advanced-rules">Show advanced rules</a>
+</div>

@@ -139,22 +139,39 @@
     components: function() {
       var creator = $(".challenge-creator");
       var summary = $(".challenge-summary");
-      creator.append(new v.SelectDetails({
+
+      var SelectDetails = new v.SelectDetails({
         model: r.ChallengeDetail
-      }).el);
-      creator.append(new v.SelectActivities({
-        model: r.ChallengeActivity,
-        collection: r.ChallengeActivities
-      }).el);
-      creator.append(new v.SelectRules({
+      });
+
+      var SelectRules = new v.SelectRules({
         model: r.ChallengeRule,
         collection: r.ChallengeRules
-      }).el);
-      creator.append(new v.SelectBonuses({
+      });
+
+      var SelectBonuses = new v.SelectBonuses({
         model: r.ChallengeBonus,
         collection: r.ChallengeBonuses
-      }).el);
-      summary.append(new v.ChallengeSummary().el);
+      });
+
+      var ChallengeSummary = new v.ChallengeSummary();
+
+      var SelectActivities = new v.SelectActivities({
+        model: r.ChallengeActivity,
+        collection: r.ChallengeActivities,
+        getAdvancedRulesElements: function(show){
+          return [
+            SelectRules.$el,
+            SelectBonuses.$el
+          ];
+        }
+      });
+
+      creator.append(SelectDetails.el);
+      creator.append(SelectActivities.el);
+      creator.append(SelectRules.el);
+      creator.append(SelectBonuses.el);
+      summary.append(ChallengeSummary.el);
     }
   });
 
@@ -188,7 +205,8 @@
     render: function() {
       this.setElement(this.template({
         title: this.title,
-        headings: this.tableHeadings
+        headings: this.tableHeadings,
+        liClass: (this.advancedRule ? 'hidden' : '')
       }));
       this.$(".item-adder").html(this.itemAdder());
       return this;
@@ -222,6 +240,27 @@
     modelBinderMapping: {
       "activity": ".activity",
       "points": ".points"
+    },
+    render: function(){
+      var r = v.ChallengeCreationStep.prototype.render.apply(this, arguments);
+      this.bindExtraEvents();
+      return r;
+    },
+    bindExtraEvents: function(){
+      this.$('.toggle-advanced-rules').click($.proxy(this, "toggleAdvancedRules"));
+    },
+    toggleAdvancedRules: function(e){
+      e.preventDefault();
+      var $anchor = $(e.currentTarget);
+      if(!$anchor.data('closed-text')){
+        $anchor.data('closed-text', $anchor.text());
+      }
+
+      $.each(this.options.getAdvancedRulesElements(), function(){
+        var dataKey = ($(this).hasClass('hidden')) ? 'open-text' : 'closed-text';
+        $anchor.text($anchor.data(dataKey));
+        $(this).toggleClass('hidden');
+      });
     }
   });
 
@@ -229,6 +268,7 @@
     itemAdder: JST["app/templates/challengecreator/rule.selector.hb"],
     rowTemplate: Handlebars.compile("<tr><td>{{ activity }}</td><td>{{ constraint }} {{ points }}</td><td>{{ timePeriod }}</td></tr>"),
     title: "Scoring Rules",
+    advancedRule: true,
     tableHeadings: ["Activity", "Constraint", "Time Period"],
     modelBinderMapping: {
       "constraint": ".constraint",
@@ -242,6 +282,7 @@
     itemAdder: JST["app/templates/challengecreator/bonus.selector.hb"],
     rowTemplate: Handlebars.compile("<tr><td>{{ activity }}</td><td>{{ threshold }} </td><td>{{ timePeriod }}</td><td>{{ bonus }}</td></tr>"),
     title: "Scoring Bonuses",
+    advancedRule: true,
     tableHeadings: ["Activity", "Threshold", "Time Period", "Bonus"],
     modelBinderMapping: {
       "threshold": ".threshold",

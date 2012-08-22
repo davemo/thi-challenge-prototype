@@ -1,4 +1,4 @@
-<li>
+<li class="{{ liClass }}">
 	<form class="form-horizontal">
 		<fieldset>
 			<legend>{{ title }}</legend>
