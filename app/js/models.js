@@ -31,7 +31,7 @@
   });
 
   m.ChallengeDetail = Backbone.Model.extend({
-    // defaults: name, start, end, description
+    // defaults: name, startDate, endDate, description
   });
 
 })(THI.Models);

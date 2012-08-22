@@ -61,9 +61,24 @@
     render: function() {
       this.setElement(this.template());
       _.defer(function() {
+        new v.DetailSummary({ model: r.ChallengeDetail });
         new v.ActivitySummary({ collection: r.ChallengeActivities });
         new v.ScoringSummary({ collection: r.ChallengeRules });
       });
+    }
+  });
+  
+  v.DetailSummary = Backbone.View.extend({
+    el: '.detail-summary',
+    template: JST["app/templates/challengecreator/detail.summary.hb"],
+    initialize: function() {
+      _.bindAll(this);
+      this.render();
+      this.model.bind("change", this.render);
+    },
+    render: function() {
+      this.$el.html(this.template(this.model.toJSON()));
+      return this;
     }
   });
 

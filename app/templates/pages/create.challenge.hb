@@ -8,13 +8,17 @@
 		margin-bottom: 10px;
 	}
 	
-	.dates h6, .dates span {
-		float: left;
-		margin-right: 10px;
+	.from, .to {
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 	
 	hr {
 		margin: 5px auto;
+	}
+	
+	.summary h3 {
+		margin: 0px;
 	}
 </style>
 
