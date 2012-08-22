@@ -7,7 +7,8 @@
     Models: {},
     Session: {},
     API: {},
-    Runtime: {}
+    Runtime: {},
+    Challenge: {}
   };
 
   _.extend(THI, Backbone.Events);
