@@ -74,7 +74,6 @@
     template: JST["app/templates/challengecreator/detail.summary.hb"],
     initialize: function() {
       _.bindAll(this);
-      this.render();
       this.model.bind("change", this.render);
     },
     render: function() {
@@ -139,6 +138,7 @@
     template: JST["app/templates/pages/create.challenge.hb"],
     components: function() {
       var creator = $(".challenge-creator");
+      var summary = $(".challenge-summary");
       creator.append(new v.SelectDetails({
         model: r.ChallengeDetail
       }).el);
@@ -154,7 +154,7 @@
         model: r.ChallengeBonus,
         collection: r.ChallengeBonuses
       }).el);
-      creator.append(new v.ChallengeSummary().el);
+      summary.append(new v.ChallengeSummary().el);
     }
   });
 

@@ -34,8 +34,8 @@ module.exports = require('lineman').config.extend('files', {
   css: {
     vendor: [
       "vendor/css/bootstrap.css",
-      "vendor/css/bootstrap-responsive.css",
-      "vendor/css/**/*.css"
+      "vendor/css/**/*.css",
+      "vendor/css/bootstrap-responsive.css"
     ]
   }
 });

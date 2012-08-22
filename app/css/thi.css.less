@@ -19,8 +19,91 @@ only screen and (min-device-pixel-ratio: 1.5) {
     width: 100px;
     height: 100px;
   }
-  
-  .btn {
-    display: block;
+}
+
+.challenge-creator li {
+	margin-bottom: 15px;
+}
+
+fieldset > legend {
+	margin-bottom: 10px;
+}
+
+.from, .to {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+hr {
+	margin: 5px auto;
+}
+
+.summary h3 {
+	margin: 0px;
+}
+
+.challenge-summary.affix {
+	top: 52px;
+	width: 470px;
+}
+
+/* Responsive
+-------------------------------------------------- */
+
+/* Desktop large
+------------------------- */
+@media (min-width: 1200px) {
+  .challenge-summary-container {
+    max-width: 970px;
+  }
+}
+
+/* Desktop
+------------------------- */
+@media (max-width: 980px) {
+  /* When affixed, space properly */
+  .challenge-summary {
+    top: 0;
+    margin-right: 0;
+  }
+}
+
+/* Tablet to desktop
+------------------------- */
+@media (min-width: 768px) and (max-width: 980px) {
+  /* Remove any padding from the body */
+  body {
+    padding-top: 0;
+  }
+  .challenge-summary.affix {
+    top: 0;
+  }
+}
+
+/* Tablet
+------------------------- */
+@media (max-width: 768px) {
+  /* Remove any padding from the body */
+  body {
+    padding-top: 0;
+  }
+
+  /* Sidenav */
+  .challenge-summary {
+    width: auto;
+  }
+  .challenge-summary.affix {
+    position: static;
+    width: auto;
+    top: 0;
+  }
+}
+
+/* Landscape phones
+------------------------- */
+@media (max-width: 480px) {
+  /* Remove padding above jumbotron */
+  body {
+    padding-top: 0;
   }
 }

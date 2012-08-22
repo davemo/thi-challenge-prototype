@@ -1,6 +1,6 @@
-<li class="summary">
+<div class="summary">
 	<fieldset>
-		<legend>Summary</legend>
+		<legend>Your Challenge</legend>
 	</fieldset>
 	<div class="well">
 		<div class="detail-summary">
@@ -26,15 +26,10 @@
 			Bonus Points
 		</h4>
 		<hr>
-		<blockquote class="bonus-summary">
-			<ol>
-				<li>
-					<span class="label label-info">500</span> bonus points awarded for participants who score more than <span class="label label-info">1000</span> points for <span class="label label-warning">Steps</span> in a <span class="label label-info">Day</span>.
-				</li>
-				<li>
-					<span class="label label-info">600</span> bonus points awarded for participants who score more than <span class="label label-info">8000</span> points for <span class="label label-warning">Pounds Lost</span> in a <span class="label label-info">Week</span>.
-				</li>
+		<blockquote>
+			<ol class="bonus-summary">
+				<li>No bonuses added yet.</li>
 			</ol>
 		</blockquote>
 	</div>
-</li>
+</div>
