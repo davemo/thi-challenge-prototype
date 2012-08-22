@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+  <li>Motivation <span class="divider">/</span></li>
+  <li><a href="#home">Challenges</a><span class="divider">/</span></li>
+	<li>Battle the Bird</li>
+</ul>
+
 <div class="row">
 	<div class="span4">
 		<img src="img/turkey.jpg" alt="Turkey">
