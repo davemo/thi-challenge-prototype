@@ -17,6 +17,8 @@
 	<span>then they earn </span>
 	<input type="text" class="span1 bonus"/>
 	<span>bonus points.</span>
-	<a href="#" class="btn btn-success">Add Rule</a>
-	<a href="#" class="btn btn-reset">Reset</a>
+	<div class="selector-controls clearfix">
+		<a href="#" class="btn btn-success">Add Bonus</a>
+		<a href="#" class="btn btn-reset">Reset</a>		
+	</div>
 </div>

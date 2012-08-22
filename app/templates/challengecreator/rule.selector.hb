@@ -18,6 +18,8 @@
 		<option value="week">Week</option>
 		<option value="month">Month</option>
 	</select>
-	<a href="#" class="btn btn-success">Add Rule</a>
-	<a href="#" class="btn btn-reset">Reset</a>
+	<div class="selector-controls clearfix">
+		<a href="#" class="btn btn-success">Add Rule</a>
+		<a href="#" class="btn btn-reset">Reset</a>		
+	</div>
 </div>
