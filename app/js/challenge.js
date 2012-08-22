@@ -10,19 +10,19 @@
       ruleOutput[rule.constraint] = rule.points;
       return ruleOutput;
     });
-    _addOverallValuesTo(rangeRules, rules);
+    _addOverallValuesTo(rangeRules, rules, range);
     return rangeRules;
   };
   
-  var _detectConstraint = function(boundary, collection) {
+  var _detectConstraint = function(boundary, collection, range) {
     return _.find(collection, function(rule) {
-      return rule.activity === 'overall' && rule.constraint === boundary;
+      return rule.activity === 'overall' && rule.timePeriod === range && rule.constraint === boundary;
     });
   };
   
-  var _addOverallValuesTo = function(processed, original) {  
-    var max = _detectConstraint("max", original);
-    var min = _detectConstraint("min", original);
+  var _addOverallValuesTo = function(processed, original, range) {  
+    var max = _detectConstraint("max", original, range);
+    var min = _detectConstraint("min", original, range);
     
     if(max) {
       processed.max = max.points;
@@ -56,12 +56,15 @@
       var dailyRules   = _generateRulesFor("day",   rulesPlain);
       var weeklyRules  = _generateRulesFor("week",  rulesPlain);
       var monthlyRules = _generateRulesFor("month", rulesPlain);
+      
       if(dailyRules) {
         output.rules.push(dailyRules);
       }
+      
       if(weeklyRules) {
         output.rules.push(weeklyRules);
       }
+      
       if(monthlyRules) {
         output.rules.push(monthlyRules);
       }

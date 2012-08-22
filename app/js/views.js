@@ -54,9 +54,21 @@
 
   v.ChallengeSummary = Backbone.View.extend({
     template: JST["app/templates/challengecreator/summary.hb"],
+    events: {
+      "click .create-challenge" : "generateConfig"
+    },
     initialize: function() {
       _.bindAll(this);
       this.render();
+    },
+    generateConfig: function(e) {
+      e.preventDefault();
+      var config = THI.Challenge.ConfigGenerator({ 
+        rules: r.ChallengeRules,
+        details: r.ChallengeDetail,
+        activities: r.ChallengeActivities
+      });
+      console.log(config);
     },
     render: function() {
       this.setElement(this.template());

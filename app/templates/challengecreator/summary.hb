@@ -31,6 +31,6 @@
 				<li>No bonuses added yet.</li>
 			</ol>
 		</blockquote>
-		<a href="#" class="btn btn-primary pull-right">Create My Challenge</a>
+		<a href="#" class="btn btn-primary pull-right create-challenge">Create My Challenge</a>
 	</div>
 </div>
