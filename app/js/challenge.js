@@ -2,37 +2,34 @@
   
   var _generateRulesFor = function(range, rules) {
     var rangeRules = { range: range, rules: [] };
-    var filteredRules = rules.filter(function(rule) {
-      var attrs = rule.attributes;
-      return attrs.timePeriod === range && attrs.activity !== 'overall';
+    var filteredRules = _.filter(rules, function(rule) {
+      return rule.timePeriod === range && rule.activity !== 'overall';
     });
-    rangeRules.rules = filteredRules.map(function(rule) {
-      var attrs = rule.attributes;
-      var ruleOutput = { type: attrs.activity };
-      ruleOutput[attrs.constraint] = attrs.points;
+    rangeRules.rules = _.map(filteredRules, function(rule) {
+      var ruleOutput = { type: rule.activity };
+      ruleOutput[rule.constraint] = rule.points;
       return ruleOutput;
     });
     _addOverallValuesTo(rangeRules, rules);
     return rangeRules;
   };
   
-  var _addOverallValuesTo = function(processed, original) {
-    function detectConstraint(boundary, collection) {
-      return collection.find(function(rule) {
-        var a = rule.attributes;
-        return a.activity === 'overall' && a.constraint === boundary;
-      });
-    }
-    
-    var max = detectConstraint("max", original);
-    var min = detectConstraint("min", original);
+  var _detectConstraint = function(boundary, collection) {
+    return _.find(collection, function(rule) {
+      return rule.activity === 'overall' && rule.constraint === boundary;
+    });
+  };
+  
+  var _addOverallValuesTo = function(processed, original) {  
+    var max = _detectConstraint("max", original);
+    var min = _detectConstraint("min", original);
     
     if(max) {
-      processed.max = max.attributes.points;
+      processed.max = max.points;
     }
     
     if(min) {
-      processed.min = min.attributes.points;
+      processed.min = min.points;
     }
   };
   
@@ -44,8 +41,8 @@
     };
     
     if(data.activities){
-      data.activities.each(function(model){
-        output.multipliers[model.attributes.activity] = model.attributes.points;
+      _.each(data.activities.toJSON(), function(m){
+        output.multipliers[m.activity] = m.points;
       });
     }
     
@@ -55,7 +52,19 @@
     }
     
     if(data.rules){
-      output.rules.push(_generateRulesFor("day", data.rules));
+      var rulesPlain   = data.rules.toJSON();
+      var dailyRules   = _generateRulesFor("day",   rulesPlain);
+      var weeklyRules  = _generateRulesFor("week",  rulesPlain);
+      var monthlyRules = _generateRulesFor("month", rulesPlain);
+      if(dailyRules) {
+        output.rules.push(dailyRules);
+      }
+      if(weeklyRules) {
+        output.rules.push(weeklyRules);
+      }
+      if(monthlyRules) {
+        output.rules.push(monthlyRules);
+      }
     }
     
     return output;

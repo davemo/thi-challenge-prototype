@@ -60,43 +60,75 @@ describe("THI.Challenge.ConfigGenerator", function() {
     });
   }
   
-  describe("generating daily rules", function() {
+  describe("generating rules", function() {
     var rules;
     
     beforeEach(function() {
-      rules = new THI.Collections.ChallengeRules;
-      addRulesTo(rules, [
-        ['day', 'step', 'min', 100], 
-        ['day', 'login', 'max', 200]
-      ]);
-      generatedConfig = subject({ rules: rules });
+      rules = new THI.Collections.ChallengeRules();
     });
     
-    it("generates the proper daily rules object", function() {
-      expect(generatedConfig.rules[0]).toEqual({
-        range: "day",
-        rules: [
-          { type: "step", min: 100 }, 
-          { type: "login", max: 200 }
-        ]
-      });
-    });
-    
-    context("when there are overall rules", function() {
-      
+    context("daily rules", function() {
       beforeEach(function() {
         addRulesTo(rules, [
-          ['day', 'overall', 'max', 5000],
-          ['day', 'overall', 'min', 100]
+          ['day', 'step', 'min', 100], 
+          ['day', 'login', 'max', 200]
         ]);
         generatedConfig = subject({ rules: rules });
       });
       
-      it("places the max and min values directly on the daily rules object", function() {
-        expect(generatedConfig.rules[0].max).toBe(5000);
-        expect(generatedConfig.rules[0].min).toBe(100);
+      it("generates the daily rules object as the first member of the rules array", function() {
+        expect(generatedConfig.rules[0]).toEqual({
+          range: "day",
+          rules: [
+            { type: "step", min: 100 }, 
+            { type: "login", max: 200 }
+          ]
+        });
+      });
+    });
+    
+    context("weekly rules", function() {
+      beforeEach(function() {
+        addRulesTo(rules, [
+          ['week', 'step', 'min', 100], 
+          ['week', 'login', 'max', 200],
+          ['week', 'overall', 'max', 5000]
+        ]);
+        generatedConfig = subject({ rules: rules });
       });
       
+      it("generates the weekly rules object as the second member of the rules array", function() {
+        expect(generatedConfig.rules[1]).toEqual({
+          range: "week",
+          max: 5000,
+          rules: [
+            { type: "step", min: 100 }, 
+            { type: "login", max: 200 }
+          ]
+        });
+      });
+    });
+    
+    context("monthly rules", function() {
+      beforeEach(function() {
+        addRulesTo(rules, [
+          ['month', 'step', 'min', 100], 
+          ['month', 'login', 'max', 200],
+          ['month', 'overall', 'min', 5000]
+        ]);
+        generatedConfig = subject({ rules: rules });
+      });
+      
+      it("generates the monthly rules object as the third member of the rules array", function() {
+        expect(generatedConfig.rules[2]).toEqual({
+          range: "month",
+          min: 5000,
+          rules: [
+            { type: "step", min: 100 }, 
+            { type: "login", max: 200 }
+          ]
+        });
+      });
     });
   });
 });
