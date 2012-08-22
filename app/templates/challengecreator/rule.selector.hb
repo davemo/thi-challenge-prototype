@@ -6,13 +6,13 @@
 	</select>
 	<span> of</span>
 	<input type="text" class="span1 points"/>
-	<span>points for </span>
 	<select name="activity-selector" class="input-small activity">
 		<option value="step">Step</option>
 		<option value="login">Login</option>
 		<option value="weightloss">Weight loss</option>
+		<option value="overall">Overall</option>
 	</select>
-	<span>in a </span>
+	<span>points per </span>
 	<select name="timeperiod-selector" class="input-medium time-period">
 		<option value="day">Day</option>
 		<option value="week">Week</option>

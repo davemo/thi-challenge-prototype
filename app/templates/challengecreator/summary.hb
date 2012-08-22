@@ -2,7 +2,7 @@
 	<fieldset>
 		<legend>Your Challenge</legend>
 	</fieldset>
-	<div class="well">
+	<div class="well clearfix">
 		<div class="detail-summary">
 			No details added yet.
 		</div>
@@ -31,5 +31,6 @@
 				<li>No bonuses added yet.</li>
 			</ol>
 		</blockquote>
+		<a href="#" class="btn btn-primary pull-right">Create My Challenge</a>
 	</div>
 </div>
