@@ -20,13 +20,12 @@
     });
     
     var rules = rangeRules.rules;
-    _.each(filteredBonuses, function(bonus){      
-      for(var i=0; i < rules.length; i++){
+    _.each(filteredBonuses, function(bonus){
+      _.each(rules, function(r, i) {
         if (rules[i].type === bonus.activity){
           rules[i].bonus = {threshold : bonus.threshold, reward : bonus.bonus};
-          break;
         }
-      }
+      });
     });
     _addOverallBonusesTo(rangeRules, bonuses);
   };
@@ -81,16 +80,13 @@
       }
     }
     
-    if(data.rules){
-      var rulesPlain     = data.rules.toJSON();
-      var bonusesPlain   = data.bonuses && data.bonuses.toJSON();
-      
+    if(data.rules){      
       _.each(["day", "week", "month", "challenge"], function(range) {
-        var rangeRules = _generateRulesFor(range, rulesPlain);
+        var rangeRules = _generateRulesFor(range, data.rules.toJSON());
         if(rangeRules) {
           output.rules.push(rangeRules);
           if(rangeRules.rules) {
-            _generateBonusesFor(range, bonusesPlain, rangeRules);
+            _generateBonusesFor(range, data.bonuses && data.bonuses.toJSON(), rangeRules);
           } 
         }
       });
