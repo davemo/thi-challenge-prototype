@@ -13,5 +13,5 @@
 	</div>
 </div>
 <div>
-    <a href="#" data-open-text="Hide advanced rules" class="toggle-advanced-rules">Show advanced rules</a>
+    <a href="#" data-open-text="Hide advanced options" class="toggle-advanced-rules">Show advanced options</a>
 </div>

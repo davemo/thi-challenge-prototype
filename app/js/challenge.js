@@ -47,8 +47,10 @@
     }
     
     if(data.details){
-      var date = moment(data.details.attributes.startDate, 'YYYY-MM-DD').format('dddd');
-      output.start_day = date.toLowerCase();
+      if(data.details.attributes.startDate) {
+        var date = moment(data.details.attributes.startDate, 'YYYY-MM-DD').format('dddd');
+        output.start_day = date.toLowerCase();        
+      }
     }
     
     if(data.rules){

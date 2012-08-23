@@ -156,7 +156,7 @@
         model: r.ChallengeDetail
       });
 
-      var SelectRules = new v.SelectRules({
+      var SelectScoring = new v.SelectScoring({
         model: r.ChallengeRule,
         collection: r.ChallengeRules
       });
@@ -173,7 +173,7 @@
         collection: r.ChallengeActivities,
         getAdvancedRulesElements: function(show){
           return [
-            SelectRules.$el,
+            SelectScoring.$el,
             SelectBonuses.$el
           ];
         }
@@ -181,7 +181,7 @@
 
       creator.append(SelectDetails.el);
       creator.append(SelectActivities.el);
-      creator.append(SelectRules.el);
+      creator.append(SelectScoring.el);
       creator.append(SelectBonuses.el);
       summary.append(ChallengeSummary.el);
     }
@@ -276,8 +276,8 @@
     }
   });
 
-  v.SelectRules = v.ChallengeCreationStep.extend({
-    itemAdder: JST["app/templates/challengecreator/rule.selector.hb"],
+  v.SelectScoring = v.ChallengeCreationStep.extend({
+    itemAdder: JST["app/templates/challengecreator/scoring.selector.hb"],
     rowTemplate: Handlebars.compile("<tr><td>{{ activity }}</td><td>{{ constraint }} {{ points }}</td><td>{{ timePeriod }}</td></tr>"),
     title: "Scoring Rules",
     advancedRule: true,

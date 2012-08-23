@@ -22,7 +22,7 @@ module.exports = require('lineman').config.extend('files', {
     ],
     app: [
       "app/js/settings.js",
-      "app/js/thi.challenge.js",
+      "app/js/thi.js",
       "app/js/models.js",
       "app/js/collections.js",
       "app/js/views.js",
