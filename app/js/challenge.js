@@ -28,12 +28,24 @@
         }
       }
     });
+    _addOverallBonusesTo(rangeRules, bonuses);
   };
   
   var _detectConstraint = function(boundary, collection, range) {
     return _.find(collection, function(rule) {
       return rule.activity === 'anything' && rule.timePeriod === range && rule.constraint === boundary;
     });
+  };
+  
+  var _addOverallBonusesTo = function(range, bonuses) {
+    var overallBonuses = _.filter(bonuses, function(bonus) {
+      return bonus.timePeriod === range.range && bonus.activity === 'anything';
+    });
+    if(overallBonuses.length > 0) {
+      var b = overallBonuses[0];
+      range.bonus = { threshold: b.threshold, reward: b.bonus };
+    }
+    
   };
   
   var _addOverallValuesTo = function(processed, original, range) {  
@@ -71,36 +83,18 @@
     
     if(data.rules){
       var rulesPlain     = data.rules.toJSON();
-      var dailyRules     = _generateRulesFor("day",   rulesPlain);
-      var weeklyRules    = _generateRulesFor("week",  rulesPlain);
-      var monthlyRules   = _generateRulesFor("month", rulesPlain);
-      var challengeRules = _generateRulesFor("challenge", rulesPlain);
+      var bonusesPlain   = data.bonuses && data.bonuses.toJSON();
       
-      if(dailyRules) {
-        output.rules.push(dailyRules);
-      }
-      
-      if(weeklyRules) {
-        output.rules.push(weeklyRules);
-      }
-      
-      if(monthlyRules) {
-        output.rules.push(monthlyRules);
-      }
-      
-      if(challengeRules) {
-        output.rules.push(challengeRules);
-      }
-    }
-    
-    if(data.bonuses) {
-      var bonusesPlain   = data.bonuses.toJSON();
-      _generateBonusesFor('day',       bonusesPlain, output.rules[0]);
-      _generateBonusesFor('week',      bonusesPlain, output.rules[1]);
-      _generateBonusesFor('month',     bonusesPlain, output.rules[2]);      
-      _generateBonusesFor('challenge', bonusesPlain, output.rules[3]);      
-    }
-    
+      _.each(["day", "week", "month", "challenge"], function(range) {
+        var rangeRules = _generateRulesFor(range, rulesPlain);
+        if(rangeRules) {
+          output.rules.push(rangeRules);
+          if(rangeRules.rules) {
+            _generateBonusesFor(range, bonusesPlain, rangeRules);
+          } 
+        }
+      });
+    }    
     
     return output;
   };
