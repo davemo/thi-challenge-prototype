@@ -6,13 +6,14 @@
 		<option value="step">Step</option>
 		<option value="login">Login</option>
 		<option value="weightloss">Weight loss</option>
-		<option value="overall">Overall</option>
+		<option value="anything">Anything</option>
 	</select>
 	<span>in a </span>
 	<select name="duration-selector" class="input-medium time-period">
 		<option value="day">Day</option>
 		<option value="week">Week</option>
 		<option value="month">Month</option>
+		<option value="challenge">Challenge</option>
 	</select>
 	<span>then they earn </span>
 	<input type="text" class="span1 bonus"/>

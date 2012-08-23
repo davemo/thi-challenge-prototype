@@ -92,7 +92,7 @@ describe("THI.Challenge.ConfigGenerator", function() {
         addRulesTo(rules, [
           ['week', 'step', 'min', 100], 
           ['week', 'login', 'max', 200],
-          ['week', 'overall', 'max', 5000]
+          ['week', 'anything', 'max', 5000]
         ]);
         generatedConfig = subject({ rules: rules });
       });
@@ -114,7 +114,7 @@ describe("THI.Challenge.ConfigGenerator", function() {
         addRulesTo(rules, [
           ['month', 'step', 'min', 100], 
           ['month', 'login', 'max', 200],
-          ['month', 'overall', 'min', 5000]
+          ['month', 'anything', 'min', 5000]
         ]);
         generatedConfig = subject({ rules: rules });
       });
@@ -122,6 +122,28 @@ describe("THI.Challenge.ConfigGenerator", function() {
       it("generates the monthly rules object as the third member of the rules array", function() {
         expect(generatedConfig.rules[2]).toEqual({
           range: "month",
+          min: 5000,
+          rules: [
+            { type: "step", min: 100 }, 
+            { type: "login", max: 200 }
+          ]
+        });
+      });
+    });
+    
+    context("challenge wide rules", function() {
+      beforeEach(function() {
+        addRulesTo(rules, [
+          ['challenge', 'step', 'min', 100], 
+          ['challenge', 'login', 'max', 200],
+          ['challenge', 'anything', 'min', 5000]
+        ]);
+        generatedConfig = subject({ rules: rules });
+      });
+      
+      it("generates the challenge wide rules object as the fourth member of the rules array", function() {
+        expect(generatedConfig.rules[3]).toEqual({
+          range: "challenge",
           min: 5000,
           rules: [
             { type: "step", min: 100 }, 
