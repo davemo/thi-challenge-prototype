@@ -14,6 +14,22 @@
     return rangeRules;
   };
   
+  var _generateBonusesFor = function(range, bonuses, rangeRules){
+    var filteredBonuses = _.filter(bonuses, function(bonus) {
+      return bonus.timePeriod === range && bonus.activity !== 'anything';
+    });
+    
+    var rules = rangeRules.rules;
+    _.each(filteredBonuses, function(bonus){      
+      for(var i=0; i < rules.length; i++){
+        if (rules[i].type === bonus.activity){
+          rules[i].bonus = {threshold : bonus.threshold, reward : bonus.bonus};
+          break;
+        }
+      }
+    });
+  };
+  
   var _detectConstraint = function(boundary, collection, range) {
     return _.find(collection, function(rule) {
       return rule.activity === 'anything' && rule.timePeriod === range && rule.constraint === boundary;
@@ -76,6 +92,13 @@
         output.rules.push(challengeRules);
       }
     }
+    
+    if(data.bonuses) {
+      var bonusesPlain   = data.bonuses.toJSON();
+      _generateBonusesFor('day', bonusesPlain, output.rules[0]);      
+    
+    }
+    
     
     return output;
   };

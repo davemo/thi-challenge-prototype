@@ -153,4 +153,48 @@ describe("THI.Challenge.ConfigGenerator", function() {
       });
     });
   });
+  
+  function addBonusesTo(collection, bonusArray) {
+    _.each(bonusArray, function(raw) {
+      collection.add({
+        activity:    raw[0],
+        threshold:   raw[1],
+        timePeriod:  raw[2],
+        bonus:       raw[3]
+      });
+    });
+  }
+  
+  describe("generating bonuses", function() {
+    var rules, bonuses;
+    
+    beforeEach(function() {
+      rules   = new THI.Collections.ChallengeRules();
+      bonuses = new THI.Collections.ChallengeBonuses();
+    });
+    
+    describe("daily bonuses", function() {
+      beforeEach(function() {
+        addRulesTo(rules, [
+          ['day', 'step', 'min', 100], 
+          ['day', 'login', 'max', 200]
+        ]);
+        addBonusesTo(bonuses, [
+          ['step', 12500, 'day', 1000], 
+          ['login', 200,  'day', 50]
+        ]);
+        generatedConfig = subject({ bonuses: bonuses, rules: rules });
+      });
+      
+      it("includes bonuses in the daily rules calculation", function() {
+        expect(generatedConfig.rules[0]).toEqual({
+          range: "day",
+          rules: [
+            { type: "step", min: 100, bonus: { threshold: 12500, reward: 1000 } }, 
+            { type: "login", max: 200, bonus: { threshold: 200, reward: 50} }
+          ]
+        });
+      });
+    });    
+  });
 });

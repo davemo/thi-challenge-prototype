@@ -66,7 +66,8 @@
       var config = THI.Challenge.ConfigGenerator({ 
         rules: r.ChallengeRules,
         details: r.ChallengeDetail,
-        activities: r.ChallengeActivities
+        activities: r.ChallengeActivities,
+        bonuses: r.ChallengeBonuses
       });
       console.log(config);
     },
