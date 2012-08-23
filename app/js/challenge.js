@@ -95,8 +95,10 @@
     
     if(data.bonuses) {
       var bonusesPlain   = data.bonuses.toJSON();
-      _generateBonusesFor('day', bonusesPlain, output.rules[0]);      
-    
+      _generateBonusesFor('day',       bonusesPlain, output.rules[0]);
+      _generateBonusesFor('week',      bonusesPlain, output.rules[1]);
+      _generateBonusesFor('month',     bonusesPlain, output.rules[2]);      
+      _generateBonusesFor('challenge', bonusesPlain, output.rules[3]);      
     }
     
     

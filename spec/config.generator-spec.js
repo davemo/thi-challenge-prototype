@@ -1,17 +1,17 @@
 describe("THI.Challenge.ConfigGenerator", function() {
-  var generatedConfig, subject;
+  var generatedConfig, subject, rules, bonuses, details, activities;
   
   subject = THI.Challenge.ConfigGenerator;
   
-  it("exists", function() {
-    expect(subject.toBeDefined);
+  beforeEach(function() {
+    activities = new THI.Collections.ChallengeActivities;
+    rules = new THI.Collections.ChallengeRules();
+    bonuses = new THI.Collections.ChallengeBonuses();
   });
   
   describe("generating the multipliers key", function() {
-    var activities;
     
     beforeEach(function() {
-      activities = new THI.Collections.ChallengeActivities;
       activities.add({
         activity: "step",
         points: 10
@@ -32,7 +32,6 @@ describe("THI.Challenge.ConfigGenerator", function() {
   });
   
   describe("generating the start day", function() {
-    var details;
     
     beforeEach(function() {
       details = new THI.Models.ChallengeDetail({
@@ -61,11 +60,6 @@ describe("THI.Challenge.ConfigGenerator", function() {
   }
   
   describe("generating rules", function() {
-    var rules;
-    
-    beforeEach(function() {
-      rules = new THI.Collections.ChallengeRules();
-    });
     
     context("daily rules", function() {
       beforeEach(function() {
@@ -166,12 +160,6 @@ describe("THI.Challenge.ConfigGenerator", function() {
   }
   
   describe("generating bonuses", function() {
-    var rules, bonuses;
-    
-    beforeEach(function() {
-      rules   = new THI.Collections.ChallengeRules();
-      bonuses = new THI.Collections.ChallengeBonuses();
-    });
     
     describe("daily bonuses", function() {
       beforeEach(function() {
@@ -195,6 +183,31 @@ describe("THI.Challenge.ConfigGenerator", function() {
           ]
         });
       });
-    });    
+    });
+    
+    describe("weekly bonuses", function() {
+      beforeEach(function() {
+        addRulesTo(rules, [
+          ['week', 'step', 'min', 100], 
+          ['week', 'login', 'max', 200]
+        ]);
+        addBonusesTo(bonuses, [
+          ['step', 12500, 'week', 1000], 
+          ['login', 200,  'week', 50]
+        ]);
+        generatedConfig = subject({ bonuses: bonuses, rules: rules });
+      });
+      
+      it("includes bonuses in the weekly rules calculation", function() {
+        expect(generatedConfig.rules[1]).toEqual({
+          range: "week",
+          rules: [
+            { type: "step", min: 100, bonus: { threshold: 12500, reward: 1000 } }, 
+            { type: "login", max: 200, bonus: { threshold: 200, reward: 50} }
+          ]
+        });
+      });
+    });
+        
   });
 });
