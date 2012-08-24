@@ -40,11 +40,11 @@
     var overallBonuses = _.filter(bonuses, function(bonus) {
       return bonus.timePeriod === range.range && bonus.activity === 'anything';
     });
+    
     if(overallBonuses.length > 0) {
       var b = overallBonuses[0];
       range.bonus = { threshold: b.threshold, reward: b.bonus };
     }
-    
   };
   
   var _addOverallValuesTo = function(processed, original, range) {  

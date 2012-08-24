@@ -71,6 +71,34 @@ describe("THI.Challenge.ConfigGenerator", function() {
     });
   });
   
+  describe("generating overall min/max constraints", function() {
+    beforeEach(function() {
+      addRulesTo(rules, [
+        ['day', 'anything', 'min', 1000], 
+        ['week', 'anything', 'max', 10000],
+        ['month', 'anything', 'min', 500],
+        ['challenge', 'anything', 'max', 395844]
+      ]);
+      generatedConfig = subject({ rules: rules });
+    });
+    
+    it("adds min to the day range", function() {
+      expect(generatedConfig.rules[0].min).toEqual(1000);
+    });
+    
+    it("adds max to the week range", function() {
+      expect(generatedConfig.rules[1].max).toEqual(10000);
+    });
+    
+    it("adds min to the month range", function() {
+      expect(generatedConfig.rules[2].min).toEqual(500);      
+    });
+    
+    it("adds max to the challenge range", function() {
+      expect(generatedConfig.rules[3].max).toEqual(395844);      
+    });
+  });
+  
   describe("generating rules", function() {
     
     function testTimePeriodRules(timePeriod, ordinal, rules) {
