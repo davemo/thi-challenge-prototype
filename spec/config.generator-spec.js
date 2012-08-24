@@ -113,7 +113,7 @@ describe("THI.Challenge.ConfigGenerator", function() {
     });
   });
   
-  xdescribe("generating overall bonuses", function() {
+  describe("generating overall bonuses", function() {
     
     beforeEach(function() {
       addRulesTo(rules, [
