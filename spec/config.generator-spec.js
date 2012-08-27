@@ -159,15 +159,18 @@ describe("THI.Challenge.ConfigGenerator", function() {
         expect(generatedConfig.rules[0].bonus).toEqual({threshold: 12500, reward: 1000});
       });      
     });
+    
   });
   
   describe("generating bonuses", function() {
     
     function testTimePeriodBonuses(timePeriod, ordinal, rules, bonuses) {
+      
       addRulesTo(rules, [
         [timePeriod, 'step', 'min', 100], 
         [timePeriod, 'login', 'max', 200]
       ]);
+      
       addBonusesTo(bonuses, [
         ['step', 12500, timePeriod, 1000], 
         ['login', 200,  timePeriod, 50]
@@ -180,6 +183,7 @@ describe("THI.Challenge.ConfigGenerator", function() {
           { type: "login", max: 200, bonus: { threshold: 200, reward: 50} }
         ]
       });
+      
     }
     
     describe("daily bonuses", function() {
@@ -205,6 +209,6 @@ describe("THI.Challenge.ConfigGenerator", function() {
         testTimePeriodBonuses('challenge', 3, rules, bonuses);
       });
     });
+    
   });
-  
 });
