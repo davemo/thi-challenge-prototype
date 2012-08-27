@@ -95,6 +95,4 @@
     return output;
   };
   
-  
-  
 })(THI.Challenge);
