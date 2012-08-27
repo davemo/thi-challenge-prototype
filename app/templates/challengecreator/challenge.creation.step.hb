@@ -1,19 +1,3 @@
-<li class="{{ liClass }}">
-	<form class="form-horizontal">
-		<fieldset>
-			<legend>{{ title }}</legend>
-			<table class="table table-striped">
-			  <thead>
-			    <tr>
-						{{#each headings}}
-							<th>{{ . }}</th>
-						{{/each}}
-			    </tr>
-			  </thead>
-			  <tbody>
-			  </tbody>
-			</table>
-		</fieldset>
-		<div class="item-adder"></div>
-	</form>
-</li>
+<form class="form-horizontal">
+  <div class="item-adder"></div>
+</form>
