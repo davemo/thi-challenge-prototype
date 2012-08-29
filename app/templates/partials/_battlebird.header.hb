@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
   <li>Motivation <span class="divider">/</span></li>
-  <li><a href="#home">Challenges</a><span class="divider">/</span></li>
+  <li><a href="#challenge">Challenges</a><span class="divider">/</span></li>
 	<li>Battle the Bird</li>
 </ul>
 
@@ -9,27 +9,16 @@
 		<img src="img/turkey.jpg" alt="Turkey">
 	</div>
 	<div class="span8">
-		<h2><a href="#view">Battle the Bird</a></h2>
+		<h2><a href="#challenge/battlebird">Battle the Bird</a></h2>
 		<em>Ends 12/31/11</em>		
 		<h3>Your <a href="#">team</a> is in 4th place.</h3>
+		<h4>Score Comparison</h4>
+		<hr>
+    <div id="comparison-chart">
+      chart goes here
+    </div>
+    <h4>Score Breakdown</h4>
+    <hr>
+    <table id="comparison-table"></table>
 	</div>
-</div>
-
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#leaders" data-toggle="tab">Leaders</a></li>
-	<li><a href="#activity" data-toggle="tab">Activity</a></li>
-	<li><a href="#details" data-toggle="tab">Details</a></li>
-</ul>
-
-<div class="tab-content">
-	<div class="tab-pane active" id="leaders">
-		{{> challenge.top.teams }}
-		{{> challenge.top.individuals }}
-	</div>
-	<div class="tab-pane" id="activity">
-		{{> challenge.activity }}
-	</div>
-	<div class="tab-pane" id="details">
-		{{> challenge.details }}
-	</div>		
 </div>
