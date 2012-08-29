@@ -40,16 +40,12 @@
     template: JST["app/templates/pages/home.hb"]
   });
 
-  v.Browse = v.Page.extend({
-    template: JST["app/templates/pages/browse.hb"]
+  v.BrowseChallenges = v.Page.extend({
+    template: JST["app/templates/pages/browse.challenges.hb"]
   });
 
-  v.View = v.Page.extend({
-    template: JST["app/templates/pages/view.hb"]
-  });
-
-  v.Roster = v.Page.extend({
-    template: JST["app/templates/pages/roster.hb"]
+  v.ViewChallenge = v.Page.extend({
+    template: JST["app/templates/pages/view.challenge.hb"]
   });
   
   v.DetailSummary = Backbone.View.extend({

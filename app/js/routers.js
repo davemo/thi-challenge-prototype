@@ -6,39 +6,19 @@
     },
     container: $("#page"),
     routes: {
-      "browse"           : "browse",
-      "view"             : "view",
-      "top-teams"        : "topTeams",
-      "top-individuals"  : "topIndividuals",
-      "roster"           : "roster",
-      "activity"         : "activity",
-      "details"          : "details",
-      "challenge/create" : "createChallenge",
-      "*path"            : "home"
+      "challenge"             : "browseChallenges",
+      "challenge/battlebird"  : "viewChallenge",
+      "challenge/create"      : "createChallenge",
+      "*path"                 : "home"
     },
     home: function() {
       this._renderPage(new v.Home());
     },
-    browse: function() {
-      this._renderPage(new v.Browse());
+    browseChallenges: function() {
+      this._renderPage(new v.BrowseChallenges());
     },
-    view: function() {
-      this._renderPage(new v.View());
-    },
-    topTeams: function() {
-      this._renderPage(new v.TopTeams());
-    },
-    topIndividuals: function() {
-      this._renderPage(new v.TopIndividuals());
-    },
-    roster: function() {
-      this._renderPage(new v.Roster());
-    },
-    activity: function() {
-      this._renderPage(new v.ActivityList());
-    },
-    details: function() {
-      this._renderPage(new v.Details());
+    viewChallenge: function() {
+      this._renderPage(new v.ViewChallenge());
     },
     createChallenge: function() {
       this._renderPage(new v.CreateChallenge());
