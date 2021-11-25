@@ -165,7 +165,7 @@
     el: '.detail-summary',
     template: JST["app/templates/challengecreator/detail.summary.hb"],
     initialize: function() {
-      this.model.bind("change", this.render);
+      this.model.on("change", this.render, this);
     },
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
@@ -258,7 +258,7 @@
       "click .btn-reset"   : "clearFields"
     },
     initialize: function() {
-      // _.bindAll(this);
+      _.bindAll(this, ['addEntry', 'clearFields']);
       this.render();
       this.modelBinder = new Backbone.ModelBinder();
       this.modelBinder.bind(this.model, this.el, this.modelBinderMapping);
