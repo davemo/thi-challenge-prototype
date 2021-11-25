@@ -1,5 +1,11 @@
 (function(c) {
-  
+
+  var _detectConstraint = function(boundary, collection, range) {
+    return _.find(collection, function(rule) {
+      return rule.activity === 'anything' && rule.timePeriod === range && rule.constraint === boundary;
+    });
+  };
+
   var _addOverallBonusesTo = function(range, bonuses) {
     var overallBonuses = _.filter(bonuses, function(bonus) {
       return bonus.timePeriod === range.range && bonus.activity === 'anything';
@@ -8,6 +14,19 @@
     if(overallBonuses.length > 0) {
       var b = overallBonuses[0];
       range.bonus = { threshold: b.threshold, reward: b.bonus };
+    }
+  };
+
+  var _addOverallValuesTo = function(processed, original, range) {
+    var max = _detectConstraint("max", original, range);
+    var min = _detectConstraint("min", original, range);
+
+    if(max) {
+      processed.max = max.points;
+    }
+
+    if(min) {
+      processed.min = min.points;
     }
   };
 
@@ -39,25 +58,6 @@
       });
     });
     _addOverallBonusesTo(rangeRules, bonuses);
-  };
-  
-  var _detectConstraint = function(boundary, collection, range) {
-    return _.find(collection, function(rule) {
-      return rule.activity === 'anything' && rule.timePeriod === range && rule.constraint === boundary;
-    });
-  };
-  
-  var _addOverallValuesTo = function(processed, original, range) {  
-    var max = _detectConstraint("max", original, range);
-    var min = _detectConstraint("min", original, range);
-    
-    if(max) {
-      processed.max = max.points;
-    }
-    
-    if(min) {
-      processed.min = min.points;
-    }
   };
   
   c.ConfigGenerator = function(data) {
