@@ -1,15 +1,12 @@
 (function(r, v, c) {
   
   r.Main = Backbone.Router.extend({
-    initialize: function() {
-      _.bindAll(this);
-    },
     container: $("#page"),
     routes: {
       "challenge"              : "browseChallenges",
+      "challenge/create"       : "createChallenge",
       "challenge/:id"          : "viewChallenge",
       "challenge/:id/team/:id" : "viewChallengeTeam",
-      "challenge/create"       : "createChallenge",
       "*path"                  : "home"
     },
     home: function() {

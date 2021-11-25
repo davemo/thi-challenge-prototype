@@ -1,9 +1,6 @@
 (function(v, api, m, r) {
 
   v.Page = Backbone.View.extend({
-    initialize: function() {
-      _.bindAll(this);
-    },
     render: function() {
       this.$el.html(this.template());
       if (this.components) {
@@ -18,7 +15,7 @@
     template: JST["app/templates/alert.hb"],
     REMOVE_AFTER: 6500,
     initialize: function(options) {
-      _.bindAll(this);
+      _.bindAll(this, ['removeAlert']);
       this.message = options.message;
       this.type = options.type;
       this.render();
@@ -168,7 +165,6 @@
     el: '.detail-summary',
     template: JST["app/templates/challengecreator/detail.summary.hb"],
     initialize: function() {
-      _.bindAll(this);
       this.model.bind("change", this.render);
     },
     render: function() {
@@ -179,12 +175,12 @@
   
   v.InputSummary = Backbone.View.extend({
     initialize: function() {
-      _.bindAll(this);
+      _.bindAll(this, ['updateSummary']);
       this.collection.bind('all', this.updateSummary);
     },
     updateSummary: function(event, model, collection) {
       this.$el.empty();
-      collection.each(function(data) {
+      this.collection.each(function(data) {
         this.$el.append(this.template(data.toJSON()));
       }, this);
     }
@@ -245,7 +241,7 @@
       "description": ".description"
     },
     initialize: function() {
-      _.bindAll(this);
+      // _.bindAll(this);
       this.render();
       this.modelBinder = new Backbone.ModelBinder();
       this.modelBinder.bind(this.model, this.el, this.modelBinderMapping);
@@ -262,7 +258,7 @@
       "click .btn-reset"   : "clearFields"
     },
     initialize: function() {
-      _.bindAll(this);
+      // _.bindAll(this);
       this.render();
       this.modelBinder = new Backbone.ModelBinder();
       this.modelBinder.bind(this.model, this.el, this.modelBinderMapping);
