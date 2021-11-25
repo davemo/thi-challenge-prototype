@@ -1,5 +1,16 @@
 (function(c) {
   
+  var _addOverallBonusesTo = function(range, bonuses) {
+    var overallBonuses = _.filter(bonuses, function(bonus) {
+      return bonus.timePeriod === range.range && bonus.activity === 'anything';
+    });
+
+    if(overallBonuses.length > 0) {
+      var b = overallBonuses[0];
+      range.bonus = { threshold: b.threshold, reward: b.bonus };
+    }
+  };
+
   var _generateRulesFor = function(range, rules) {
     var rangeRules = { range: range, rules: [] };
     var filteredRules = _.filter(rules, function(rule) {
@@ -13,7 +24,7 @@
     _addOverallValuesTo(rangeRules, rules, range);
     return rangeRules;
   };
-  
+
   var _generateBonusesFor = function(range, bonuses, rangeRules){
     var filteredBonuses = _.filter(bonuses, function(bonus) {
       return bonus.timePeriod === range && bonus.activity !== 'anything';
@@ -34,17 +45,6 @@
     return _.find(collection, function(rule) {
       return rule.activity === 'anything' && rule.timePeriod === range && rule.constraint === boundary;
     });
-  };
-  
-  var _addOverallBonusesTo = function(range, bonuses) {
-    var overallBonuses = _.filter(bonuses, function(bonus) {
-      return bonus.timePeriod === range.range && bonus.activity === 'anything';
-    });
-    
-    if(overallBonuses.length > 0) {
-      var b = overallBonuses[0];
-      range.bonus = { threshold: b.threshold, reward: b.bonus };
-    }
   };
   
   var _addOverallValuesTo = function(processed, original, range) {  
@@ -80,7 +80,7 @@
       }
     }
     
-    if(data.rules){      
+    if(data.rules){
       _.each(["day", "week", "month", "challenge"], function(range) {
         var rangeRules = _generateRulesFor(range, data.rules.toJSON());
         if(rangeRules) {

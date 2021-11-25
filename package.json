@@ -7,15 +7,12 @@
     "name": "David Mosher",
     "company": "Beagle Productions"
   },
-  "dependencies": {
-    "express" : "3.0.0beta7",
-    "request": "~2.9.203",
-    "handlebars" : "~1.0.5"
+  "scripts": {
+    "start": "lineman run",
+    "build": "lineman build",
+    "test": "lineman spec-ci"
   },
   "devDependencies": {
-    "grunt": "~0.3.10",
-    "grunt-contrib": "~0.1.1",
-    "lineman": "0.1.0",
-    "testacular" : "0.0.15"
+    "lineman": "^0.39.0"
   }
 }
